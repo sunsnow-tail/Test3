@@ -1,0 +1,87 @@
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\obj\Debug\CountryWeatherTest.csprojResolveAssemblyReference.cache
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\CountryWeatherTest.dll.config
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\CountryWeatherTest.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\CountryWeatherTest.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\iasset technical test.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Newtonsoft.Json.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Helpers.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Http.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Http.WebHost.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Mvc.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Razor.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Optimization.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\iasset technical test.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Newtonsoft.Json.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Helpers.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Http.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Http.WebHost.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Mvc.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Razor.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\System.Web.Optimization.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\obj\Debug\CountryWeatherTest.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\obj\Debug\CountryWeatherTest.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Castle.Core.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Moq.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Castle.Core.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Moq.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\WebActivatorEx.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.Mvc.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.Mvc.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\CountryWeatherTest.dll.config
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\CountryWeatherTest.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\CountryWeatherTest.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Castle.Core.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\iasset technical test.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Moq.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Newtonsoft.Json.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Helpers.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Http.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Http.WebHost.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Mvc.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Razor.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\WebActivatorEx.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Optimization.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.Mvc.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\iasset technical test.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Castle.Core.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Moq.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Newtonsoft.Json.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Helpers.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Http.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Http.WebHost.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Mvc.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Razor.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\System.Web.Optimization.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.Mvc.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\obj\Debug\CountryWeatherTest.csprojResolveAssemblyReference.cache
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\obj\Debug\CountryWeatherTest.dll
+C:\Home\Australia\Sydney\iasset\iasset technical test - Copy\CountryWeatherTest\obj\Debug\CountryWeatherTest.pdb

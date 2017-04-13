@@ -108,7 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\iasset technical test\CountryWeather.csproj">
+    <ProjectReference Include="..\CountryWeather\CountryWeather.csproj">
       <Project>{fbfb8738-0bb6-4d05-9115-033f09c95ca1}</Project>
       <Name>CountryWeather</Name>
     </ProjectReference>

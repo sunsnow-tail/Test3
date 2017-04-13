@@ -1,0 +1,117 @@
+﻿@model IEnumerable<CountryWeather.Models.Country>
+@using System.Web.UI.WebControls;
+
+@{
+    var listItems = Model.Select(p=>new ListItem
+        {
+              Text = p.Name,
+              Value = p.Name
+        });
+}
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test</h2>
+
+@Html.DropDownList("ddCountry", new SelectList(listItems), new { onchange = "getCities(this.options[ this.selectedIndex ].text)", @class = "input-lg" }) 
+
+<p></p>
+<div id="loaderDiv" class="loader" hidden="true"></div>
+
+<select id="ssCity" style="display: none;" class="input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
+    <option></option>
+</select>
+
+<p></p>
+<div id="loaderDiv2" class="loader" hidden="true"></div>
+
+@*if it were asp/ext.net control - I would create a custom one for all of them*@
+<input type="text" id="lLocation" hidden="true" readonly="true" class="input-lg" />
+<input type="text" id="lTime" hidden="true" readonly="true" class="input-lg" />
+<input type="text" id="lWind" hidden="true" readonly="true" class="input-lg" />
+<input type="text" id="lVisibility" hidden="true" readonly="true" class="input-lg"/>
+<input type="text" id="lSkyConditions" hidden="true" readonly="true" class="input-lg"/>
+<input type="text" id="lTemperature" hidden="true" readonly="true" class="input-lg"/>
+<input type="text" id="lDewPoint" hidden="true" readonly="true" class="input-lg"/>
+<input type="text" id="lHumidity" hidden="true" readonly="true" class="input-lg" />
+<input type="text" id="lPressure" hidden="true" readonly="true" class="input-lg" />
+
+<script type="text/javascript">
+
+    function getCities(option) {
+            
+        //hide cities
+        document.getElementById("ssCity").style = "display: none;"
+        //hide weather controls
+        $('input[type=text][readonly]').hide();
+
+        $("#loaderDiv").show();
+
+        var uri = "/api/Cities/?country=" + option;
+
+        $('#ssCity').empty();
+
+        $.get(uri, function (data) {
+
+            data.forEach(function (item) {
+                $('#ssCity').append($('<option>', { value: item, text: item }));
+            });            
+            
+            $("#loaderDiv").hide();
+
+            if (option == "_Select a country") {
+                document.getElementById("ssCity").style = "display: none;"
+            } else {
+                document.getElementById("ssCity").style = "display: block;"
+            }
+        });        
+    }
+
+    function getWeather(option) {
+        
+        $('input[type=text][readonly]').hide();
+        $("#loaderDiv2").show();
+
+        var control = document.getElementById("ddCountry");
+        var country = control.options[control.selectedIndex].text;
+        
+        var uri = "/api/Weather/?city=" + option + "&country="+country;
+
+        $.get(uri, function (data) {
+
+            $('input[type=text][readonly]').show();
+
+            $('#lLocation').val("Location: " + data.name );
+
+            $('#lTime').val("Time: " + (data.time == null ? "not provided" : data.time));
+
+            $('#lWind').val("Wind (speed): " + (data.wind.speed == null ? "not provided" : data.wind.speed));
+
+            $('#lVisibility').val("Visibility: " + (data.visibility == null ? "not provided" : data.visibility));
+
+            $('#lSkyConditions').val("Sky conditions: " + (data.clouds.all == null ? "not provided" : data.clouds.all));
+
+            $('#lTemperature').val("Temperature: " + (data.main.temp == null ? "not provided" : data.main.temp));
+
+            $('#lDewPoint').val("Dew Point: " + (data.dewPoint == null ? "not provided" : data.dewPoint));
+
+            $('#lHumidity').val("Humidity: " + (data.main.humidity == null ? "not provided" : data.main.humidity));
+
+            $('#lPressure').val("Pressure: " + (data.main.pressure == null ? "not provided" : data.main.pressure));
+
+            if (option == "_Select a city") {
+                $('input[type=text][readonly]').hide();
+            } else {
+                $('input[type=text][readonly]').show();
+            }
+            
+            $("#loaderDiv2").hide();
+        });
+
+    }
+
+</script>
+

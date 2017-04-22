@@ -16,37 +16,34 @@
 
 <h2>Test</h2>
 
-@Html.DropDownList("ddCountry", new SelectList(listItems), new { onchange = "getCities(this.options[ this.selectedIndex ].text)", @class = "input-lg" }) 
+@Html.DropDownList("ddCountry", new SelectList(listItems), new { onchange = "getCities(this.options[ this.selectedIndex ].text)", @class = "form-control input-lg" }) 
 
 <p></p>
 <div id="loaderDiv" class="loader" hidden="true"></div>
 
-<select id="ssCity" style="display: none;" class="input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
+<select id="ssCity" style="display: none;" class="form-control input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
     <option></option>
 </select>
 
 <p></p>
 <div id="loaderDiv2" class="loader" hidden="true"></div>
 
-@*if it were asp/ext.net control - I would create a custom one for all of them*@
-<input type="text" id="lLocation" hidden="true" readonly="true" class="input-lg" />
-<input type="text" id="lTime" hidden="true" readonly="true" class="input-lg" />
-<input type="text" id="lWind" hidden="true" readonly="true" class="input-lg" />
-<input type="text" id="lVisibility" hidden="true" readonly="true" class="input-lg"/>
-<input type="text" id="lSkyConditions" hidden="true" readonly="true" class="input-lg"/>
-<input type="text" id="lTemperature" hidden="true" readonly="true" class="input-lg"/>
-<input type="text" id="lDewPoint" hidden="true" readonly="true" class="input-lg"/>
-<input type="text" id="lHumidity" hidden="true" readonly="true" class="input-lg" />
-<input type="text" id="lPressure" hidden="true" readonly="true" class="input-lg" />
+<div id="weatherData" class="form-group"></div>
+
 
 <script type="text/javascript">
 
     function getCities(option) {
-            
-        //hide cities
-        document.getElementById("ssCity").style = "display: none;"
-        //hide weather controls
-        $('input[type=text][readonly]').hide();
+
+        //empty weather controls
+        $("#weatherData").empty();
+
+        if (option == "_Select a country") {
+            document.getElementById("ssCity").style = "display: none;"
+            return;
+        } else {
+            document.getElementById("ssCity").style = "display: block;"
+        }
 
         $("#loaderDiv").show();
 
@@ -58,57 +55,48 @@
 
             data.forEach(function (item) {
                 $('#ssCity').append($('<option>', { value: item, text: item }));
-            });            
-            
+            });
+
             $("#loaderDiv").hide();
 
-            if (option == "_Select a country") {
-                document.getElementById("ssCity").style = "display: none;"
-            } else {
-                document.getElementById("ssCity").style = "display: block;"
-            }
-        });        
+        });
     }
 
     function getWeather(option) {
-        
-        $('input[type=text][readonly]').hide();
+
+        if (option == "_Select a city") {
+            $("#weatherData").empty();
+            return;
+        }
+
         $("#loaderDiv2").show();
 
         var control = document.getElementById("ddCountry");
         var country = control.options[control.selectedIndex].text;
-        
-        var uri = "/api/Weather/?city=" + option + "&country="+country;
+
+        var uri = "/api/Weather/?city=" + option + "&country=" + country;
 
         $.get(uri, function (data) {
 
-            $('input[type=text][readonly]').show();
+            var controls = [];
 
-            $('#lLocation').val("Location: " + data.name );
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Location: ' + data.name + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Time: ' + (data.time == null ? "not provided" : data.time) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Wind (speed): ' + (data.wind.speed == null ? "not provided" : data.wind.speed) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Visibility: ' + (data.visibility == null ? "not provided" : data.visibility) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Sky conditions: ' + (data.clouds.all == null ? "not provided" : data.clouds.all) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Temperature: ' + (data.main.temp == null ? "not provided" : data.main.temp) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Dew Point: ' + (data.dewPoint == null ? "not provided" : data.dewPoint) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Humidity: ' + (data.main.humidity == null ? "not provided" : data.main.humidity) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Pressure: ' + (data.main.pressure == null ? "not provided" : data.main.pressure) + '" />');
 
-            $('#lTime').val("Time: " + (data.time == null ? "not provided" : data.time));
+            controls.forEach(function(item){
+                $("#weatherData").append(item);
+                $("#weatherData").append('&nbsp;');
+            })
 
-            $('#lWind').val("Wind (speed): " + (data.wind.speed == null ? "not provided" : data.wind.speed));
-
-            $('#lVisibility').val("Visibility: " + (data.visibility == null ? "not provided" : data.visibility));
-
-            $('#lSkyConditions').val("Sky conditions: " + (data.clouds.all == null ? "not provided" : data.clouds.all));
-
-            $('#lTemperature').val("Temperature: " + (data.main.temp == null ? "not provided" : data.main.temp));
-
-            $('#lDewPoint').val("Dew Point: " + (data.dewPoint == null ? "not provided" : data.dewPoint));
-
-            $('#lHumidity').val("Humidity: " + (data.main.humidity == null ? "not provided" : data.main.humidity));
-
-            $('#lPressure').val("Pressure: " + (data.main.pressure == null ? "not provided" : data.main.pressure));
-
-            if (option == "_Select a city") {
-                $('input[type=text][readonly]').hide();
-            } else {
-                $('input[type=text][readonly]').show();
-            }
-            
             $("#loaderDiv2").hide();
+
         });
 
     }

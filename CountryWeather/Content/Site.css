@@ -21,14 +21,7 @@ input,
 select,
 textarea {
     max-width: 280px;
-}
-
-.hideItem {
-    display: none;
-}
-
-.showItem {
-    display: block;
+    margin-bottom: 15px;
 }
 
 .loader {

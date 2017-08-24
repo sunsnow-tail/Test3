@@ -1,0 +1,21 @@
+﻿@model CountryWeather.Models.CountryWeatherInformation
+@using System.Web.UI.WebControls;
+
+@if (Model == null || (Model.SelectedCity == null && Model.Cities == null))
+{
+    return;
+}
+
+@{
+
+    var listItems = Model.Cities.Select(p => new ListItem
+    {
+        Text = p,
+        Value = p,
+        Selected = p == Model.SelectedCity
+    });
+
+    <h4>Select a city:</h4>
+    @Html.DropDownListFor(p=>p.SelectedCity, new SelectList(listItems), 
+        new { @class = "form-control input-lg", onchange = @"form.submit();" })
+}

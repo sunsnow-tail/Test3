@@ -1,0 +1,26 @@
+﻿@model CountryWeather.Models.CountryWeatherInformation
+
+@if (Model == null || Model.WeatherInfo == null || Model.WeatherInfo.Name == null)
+{
+    return;
+}
+
+<div id="divDet">
+    @Html.TextBox("loc", "Location " + Model.WeatherInfo.Name, new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("time", "Time: " + (Model.WeatherInfo.Time == null ? "not provided" : Model.WeatherInfo.Time), new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("wind", "Wind (speed): " + (Model.WeatherInfo.Wind.Speed == null ? "not provided" : Model.WeatherInfo.Wind.Speed),
+        new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("vis", "Visibility: " + (Model.WeatherInfo.Visibility == null ? "not provided" : Model.WeatherInfo.Visibility),
+        new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("sky", "Sky conditions: " + (Model.WeatherInfo.Clouds.All == null ? "not provided" : Model.WeatherInfo.Clouds.All),
+        new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("temp", "Temperature: " + (Model.WeatherInfo.Main.Temp == null ? "not provided" : Model.WeatherInfo.Main.Temp),
+        new { @class = "input-lg", @readonly = "readonly" })
+    @Html.TextBox("dew", "Dew Point: " + (Model.WeatherInfo.DewPoint == null ? "not provided" : Model.WeatherInfo.DewPoint),
+        new { @class = "input-lg", @readonly = "readonly" });
+    @Html.TextBox("hum", "Humidity: " + (Model.WeatherInfo.Main.Humidity == null ? "not provided" : Model.WeatherInfo.Main.Humidity),
+        new { @class = "input-lg", @readonly = "readonly" });
+    @Html.TextBox("press", "Pressure: " + (Model.WeatherInfo.Main.Pressure == null ? "not provided" : Model.WeatherInfo.Main.Pressure),
+        new { @class = "input-lg", @readonly = "readonly" });
+</div>
+

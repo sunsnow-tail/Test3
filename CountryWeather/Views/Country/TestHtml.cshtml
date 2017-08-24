@@ -1,0 +1,121 @@
+﻿@model IEnumerable<CountryWeather.Models.Country>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Html controls and JQuery</h2>
+<h5>
+    This is a bad example but it is a test. HTML controls and JQuery. It is a test to use "old way" in MVC. Why did I create this page - I like pages that has no visible postbacks.
+</h5>
+
+<h4>Select a country:</h4>
+<select id="ssCountry" class="form-control input-lg" onchange="getCities(this.options[this.selectedIndex].text)">
+    <option></option>
+</select>
+
+<div id="loaderDiv" class="loader" hidden></div>
+
+<div id="divCity" style="display: none;">
+    <h4>Select a city:</h4>
+    <select id="ssCity" class="form-control input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
+        <option></option>
+    </select>
+</div>
+
+<div id="loaderDiv2" class="loader" hidden></div>
+
+<div id="weatherData" class="form-group"></div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var data = [];
+
+       @foreach (var r in Model)
+       {
+          <text>
+                data.push('@r.Name');
+          </text>
+       }
+
+        data.forEach(function (item) {
+            $('#ssCountry').append($('<option>', { value: item, text: item }));
+        })
+    })
+
+    function getCities(option) {
+
+        //empty weather controls
+        $("#weatherData").empty();
+
+        if (option == "_Select a country") {
+            $("#divCity")[0].style = "display: none;"
+            return;
+        } else {
+            $("#divCity")[0].style = "display: block;"
+        }
+
+        $("#loaderDiv").show();
+
+        var uri = "/api/Cities/?country=" + option;
+
+        $('#ssCity').empty();
+
+        $.get(uri, function (data) {
+
+            data.forEach(function (item) {
+                $('#ssCity').append($('<option>', { value: item, text: item }));
+            });
+
+            $("#loaderDiv").hide();
+
+        });
+    }
+
+    function getWeather(option) {
+
+        $("#weatherData").empty();
+
+        if (option == "_Select a city") {
+            return;
+        }
+
+        $("#loaderDiv2").show();
+
+        var control = $("#ssCountry")[0];
+        var country = control.options[control.selectedIndex].text;
+
+        var uri = "/api/Weather/?city=" + option + "&country=" + country;
+
+        $.get(uri, function (data) {
+
+            var controls = [];
+
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Location: ' + data.name + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Time: ' + (data.time == null ? "not provided" : data.time) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Wind (speed): ' + (data.wind.speed == null ? "not provided" : data.wind.speed) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Visibility: ' + (data.visibility == null ? "not provided" : data.visibility) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Sky conditions: ' + (data.clouds.all == null ? "not provided" : data.clouds.all) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Temperature: ' + (data.main.temp == null ? "not provided" : data.main.temp) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Dew Point: ' + (data.dewPoint == null ? "not provided" : data.dewPoint) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Humidity: ' + (data.main.humidity == null ? "not provided" : data.main.humidity) + '" />');
+            controls.push('<input type="text" readonly="true" class="input-lg" value = "Pressure: ' + (data.main.pressure == null ? "not provided" : data.main.pressure) + '" />');
+
+            controls.forEach(function(item){
+                $("#weatherData").append(item);
+                $("#weatherData").append('&nbsp;');
+            })
+
+            $("#loaderDiv2").hide();
+
+        });
+
+    }
+
+</script>
+

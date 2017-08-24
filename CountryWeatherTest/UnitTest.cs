@@ -11,7 +11,7 @@ namespace CountryWeatherTest
         [TestMethod]
         public void CanGetCountries()
         {
-            var countries = new CountryWeather.Data.RestCountries();
+            var countries = new CountryWeather.Data.CountryData();
 
             Assert.IsTrue(countries.Countries.Any());
         }

@@ -5,7 +5,6 @@ C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Castle.Core.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\iasset technical test.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Microsoft.Web.Infrastructure.dll
-C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Moq.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Newtonsoft.Json.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\System.Web.Helpers.dll
@@ -23,7 +22,6 @@ C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Microsoft.Practices.Unity.Mvc.d
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\iasset technical test.pdb
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Castle.Core.xml
-C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Moq.xml
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\Newtonsoft.Json.xml
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\System.Net.Http.Formatting.xml
 C:\GitHubRepo\Test3\CountryWeatherTest\bin\Debug\System.Web.Helpers.xml

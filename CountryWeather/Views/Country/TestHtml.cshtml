@@ -19,6 +19,7 @@
 
 <div id="loaderDiv" class="loader" hidden></div>
 
+@*use style here as it is a subject to chabge by jquery*@
 <div id="divCity" style="display: none;">
     <h4>Select a city:</h4>
     <select id="ssCity" class="form-control input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
@@ -53,13 +54,6 @@
         //empty weather controls
         $("#weatherData").empty();
 
-        if (option == "_Select a country") {
-            $("#divCity")[0].style = "display: none;"
-            return;
-        } else {
-            $("#divCity")[0].style = "display: block;"
-        }
-
         $("#loaderDiv").show();
 
         var uri = "/api/Cities/?country=" + option;
@@ -74,7 +68,13 @@
 
             $("#loaderDiv").hide();
 
-        });
+            if (option == "_Select a country") {
+                $("#divCity")[0].style = "display: none;"
+                return;
+            } else {
+                $("#divCity")[0].style = "display: block;"
+            }
+        });        
     }
 
     function getWeather(option) {

@@ -11,6 +11,11 @@ namespace CountryWeather.WebApi
         // GET api/<controller>/5
         public IEnumerable<string> Get(string country)
         {
+            if (string.IsNullOrWhiteSpace(country))
+            {
+                return new List<string>();
+            }
+
             var root = ConfigurationManager.AppSettings["rootName"];
 
             using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())

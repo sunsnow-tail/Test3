@@ -24,13 +24,15 @@ namespace CountryWeather.Controllers
 
         [HttpGet]
         public ActionResult TestRazor()
-        {          
+        {         
+            //user will type a country 
             return View(new CountryWeatherInformation());
         }
 
         [HttpGet]
         public ActionResult TestHtml()
         {
+            //show a list of countries
             return View(_country.Countries);
         }
 

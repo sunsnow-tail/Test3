@@ -64,26 +64,22 @@ namespace CountryWeather.WebApi
 
                     uri += "&" + apiId;
 
-                    HttpClient client2 = new HttpClient();
-                    client2.BaseAddress = new Uri(uri);
-
-                    // Add an Accept header for JSON format.
-                    client2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    HttpResponseMessage response = client2.GetAsync(uri).Result; 
-                    if (response.IsSuccessStatusCode)
+                    using (HttpClient client2 = new HttpClient())
                     {
-                        // Parse the response body. Blocking!
-                        var weatherJson = response.Content.ReadAsStringAsync().Result;
-                        var weather = JsonConvert.DeserializeObject<Weather>(weatherJson);
+                        client2.BaseAddress = new Uri(uri);
 
-                        client2.Dispose();
+                        // Add an Accept header for JSON format.
+                        client2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                        return weather;
-                    }
-                    else
-                    {
-                        client2.Dispose();                        
+                        HttpResponseMessage response = client2.GetAsync(uri).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Parse the response body. Blocking!
+                            var weatherJson = response.Content.ReadAsStringAsync().Result;
+                            var weather = JsonConvert.DeserializeObject<Weather>(weatherJson);
+ 
+                            return weather;
+                        }                        
                     }
                 }
                 

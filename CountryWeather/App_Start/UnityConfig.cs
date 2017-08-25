@@ -31,6 +31,7 @@ namespace CountryWeather.App_Start
 
         public static void RegisterTypes(IUnityContainer container)
         {
+            //the project has no more classes that I think needs to handled by IoC container
             container.RegisterType<ICountry, CountryData>();
         }
     }

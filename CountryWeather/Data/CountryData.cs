@@ -26,39 +26,34 @@ namespace CountryWeather.Data
         {
             var uri = ConfigurationManager.AppSettings["cityUrl"];
 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(uri);
-
-            // Add an Accept header for JSON format.
-            client.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
-
-            // List data response.
-            HttpResponseMessage response = client.GetAsync(uri).Result;
-            if (response.IsSuccessStatusCode)
+            using (HttpClient client = new HttpClient())
             {
-                var countries = response.Content.ReadAsStringAsync().Result;
-                var contryList = JsonConvert.DeserializeObject<List<Country>>(countries);
-                contryList.Add(new Country { Name = "_Select a country" });
+                client.BaseAddress = new Uri(uri);
 
-                client.Dispose();
+                // Add an Accept header for JSON format.
+                client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-                return contryList;
+                // List data response.
+                HttpResponseMessage response = client.GetAsync(uri).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var countries = response.Content.ReadAsStringAsync().Result;
+                    var contryList = JsonConvert.DeserializeObject<List<Country>>(countries);
 
+                    return contryList;
+                }
+                else
+                {
+                    //the EU service fail.
+                    //let's mock some data
+                    return new List<Country>{
+                        new Country{Name="_Select a country"},
+                        new Country{Name="Australia"},
+                        new Country{Name="Russia"},
+                    };
+                }
             }
-            else
-            {
-                client.Dispose();
-
-                //the EU service fail.
-                //let's mock some data
-                return new List<Country>{
-                    new Country{Name="_Select a country"},
-                    new Country{Name="Australia"},
-                    new Country{Name="Russia"},
-                };
-            }
-
         }
 
 

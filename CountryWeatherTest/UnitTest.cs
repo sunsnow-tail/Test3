@@ -1,14 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System.Collections.Generic;
-using Moq;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace CountryWeatherTest
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest
     {
-        [TestMethod]
+        [Test]
         public void CanGetCountries()
         {
             var countries = new CountryWeather.Data.CountryData();
@@ -16,7 +14,7 @@ namespace CountryWeatherTest
             Assert.IsTrue(countries.Countries.Any());
         }
 
-        [TestMethod]
+        [Test]
         public void CanGetCities()
         {
             var controller = new CountryWeather.WebApi.CitiesController();
@@ -26,56 +24,62 @@ namespace CountryWeatherTest
             Assert.IsTrue(cities.Any());
         }
 
-        [TestMethod]
-        public void CanGetCitiesForCountry()
+        [TestCase("Australia", "Canberra", ExpectedResult = true)]
+        [TestCase("Australia", "Brisbane", ExpectedResult = true)]
+        [TestCase("Australia", "Sydney", ExpectedResult = true)]
+        [TestCase("Russia", "Moscow", ExpectedResult = true)]
+        [TestCase("Russia", "Habarovsk", ExpectedResult = true)]
+        [TestCase("Russia", "Sydney", ExpectedResult = false)]
+        [TestCase("Russia", "Berlin", ExpectedResult = false)]
+        [TestCase("Russia", "London", ExpectedResult = false)]
+        public bool CanGetCitiesForCountry(string country, string city)
         {
             var controller = new CountryWeather.WebApi.CitiesController();
 
-            var cities = controller.Get("Australia");
+            var cities = controller.Get(country);
 
-            Assert.IsTrue(cities.Contains("Canberra"));
+            return cities.Any(p => p.Contains(city));
         }
 
-        [TestMethod]
-        public void CanGetWeather()
+        [TestCase("UK","London", ExpectedResult = true)]
+        [TestCase("Australia", "Sydney", ExpectedResult = true)]
+        [TestCase("Russia", "Moscow", ExpectedResult = true)]
+        [TestCase("Russia", "Habarovsk", ExpectedResult = true)]
+        public bool CanGetWeather(string country, string city)
         {
             var controller = new CountryWeather.WebApi.WeatherController();
 
-            var weather = controller.Get("Canberra", "Australia");
+            var weather = controller.Get(city, country);
 
-            Assert.IsTrue(weather != null);
+            return weather != null;
         }
 
-        [TestMethod]
-        public void CanGetWeatherForCountry()
+        [TestCase("UK", "London", ExpectedResult = true)]
+        //[TestCase("Canberra", ExpectedResult = true)] - unfortunately, service can get any data but for London now
+        public bool CanGetWeatherForCountry(string country, string city)
         {
-            var city = "Canberra";
-
             var controller = new CountryWeather.WebApi.WeatherController();
 
             var weather = controller.Get(city, "Australia");
 
-            Assert.IsTrue(weather.Name == city);
+            return weather.Name == city;
         }
 
-        [TestMethod]
-        public void TestCityParsing()
+        [TestCase("London", "<City>London</City>", ExpectedResult = true)]
+        [TestCase("Moscow", "<City>Moscow</City>", ExpectedResult = true)]
+        [TestCase("Not", "<City>Not</City>", ExpectedResult = true)]
+        [TestCase("HH BB", "<City>HH BB</City>", ExpectedResult = true)]
+        [TestCase("My big city name", "<City>My big city name</City>", ExpectedResult = true)]
+        [TestCase("My big city name2", "<City>My big city name</City>", ExpectedResult = false)]
+        [TestCase("My big city name", "<City>My big city name2</City>", ExpectedResult = false)]
+        [TestCase("My big city name", "<City>My big name</City>", ExpectedResult = false)]
+        public bool TestCityParsing(string city, string parseLine)
         {
-            var testData = new Dictionary<string,string>();
-            testData.Add("London", "<City>London</City>");
-            testData.Add("Moscow", "<City>Moscow</City>");
-            testData.Add("Not", "<City>Not</City>");
-            testData.Add("HH BB", "<City>HH BB</City>");
-            testData.Add("My big city name", "<City>My big city name</City>");
-
             var controller = new CountryWeather.WebApi.CitiesController();
 
-            foreach(var line in testData){
-                var result = controller.TestGetCity(line.Value);
+            var result = controller.TestGetCity(parseLine);
 
-                Assert.IsTrue(result == line.Key);
-            }            
-
+            return (result == city);
         }
     }
 }

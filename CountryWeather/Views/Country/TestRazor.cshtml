@@ -27,7 +27,7 @@
 
     $('#inputCountry').keypress(keypressHandler);
 
-    function keypressHandler(e) {
+    var keypressHandler = (e) => {
         if (e.which == 13) {
             $("#postForm").submit();
         }

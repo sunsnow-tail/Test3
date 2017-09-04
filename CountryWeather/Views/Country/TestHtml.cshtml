@@ -34,8 +34,9 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function () {
-        var data = [];
+    $(document).ready( () => {
+
+       let data = [];
 
        @foreach (var r in Model)
        {
@@ -44,31 +45,36 @@
           </text>
        }
 
-        data.forEach(function (item) {
+        data.forEach( (item) => {
             $('#ssCountry').append($('<option>', { value: item, text: item }));
         })
     })
 
-    function getCities(option) {
+    var capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+    var getCities = (country) => {
 
         //empty weather controls
         $("#weatherData").empty();
 
         $("#loaderDiv").show();
 
-        var uri = "/api/Cities/?country=" + option;
+        var uri = "/api/Cities/?country=" + country;
 
         $('#ssCity').empty();
 
-        $.get(uri, function (data) {
+        $.get(uri, (data) => {
 
-            data.forEach(function (item) {
+            data.forEach( (item) => {
                 $('#ssCity').append($('<option>', { value: item, text: item }));
             });
 
             $("#loaderDiv").hide();
 
-            if (option == "_Select a country") {
+            if (country == "_Select a country") {
                 $("#divCity")[0].style = "display: none;"
                 return;
             } else {
@@ -77,36 +83,35 @@
         });        
     }
 
-    function getWeather(option) {
+    var getWeather = (city) => {
 
         $("#weatherData").empty();
 
-        if (option == "_Select a city") {
+        if (city == "_Select a city") {
             return;
         }
 
         $("#loaderDiv2").show();
 
-        var control = $("#ssCountry")[0];
-        var country = control.options[control.selectedIndex].text;
+        let control = $("#ssCountry")[0];
+        let country = control.options[control.selectedIndex].text;
 
-        var uri = "/api/Weather/?city=" + option + "&country=" + country;
+        let uri = "/api/Weather/?city=" + city + "&country=" + country;
 
-        $.get(uri, function (data) {
+        $.get(uri, (data) => {
 
-            var controls = [];
+            let controls = [];
 
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Location: ' + data.name + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Time: ' + (data.time == null ? "not provided" : data.time) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Wind (speed): ' + (data.wind.speed == null ? "not provided" : data.wind.speed) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Visibility: ' + (data.visibility == null ? "not provided" : data.visibility) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Sky conditions: ' + (data.clouds.all == null ? "not provided" : data.clouds.all) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Temperature: ' + (data.main.temp == null ? "not provided" : data.main.temp) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Dew Point: ' + (data.dewPoint == null ? "not provided" : data.dewPoint) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Humidity: ' + (data.main.humidity == null ? "not provided" : data.main.humidity) + '" />');
-            controls.push('<input type="text" readonly="true" class="input-lg" value = "Pressure: ' + (data.main.pressure == null ? "not provided" : data.main.pressure) + '" />');
+            for (let dt in data) {
 
-            controls.forEach(function(item){
+                let propName = capitalizeFirstLetter(dt);
+                let propValue = Reflect.get(data, dt) != null ? Reflect.get(data, dt) : "";
+
+                controls.push('<input type="text" readonly="true" class="input-lg" value = "' +
+                    propName + ' : ' + propValue + '" />');
+            } 
+
+            controls.forEach( (item) => {
                 $("#weatherData").append(item);
                 $("#weatherData").append('&nbsp;');
             })

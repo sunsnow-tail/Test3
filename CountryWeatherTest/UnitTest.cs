@@ -62,7 +62,7 @@ namespace CountryWeatherTest
 
             var weather = controller.Get(city, "Australia");
 
-            return weather.Name == city;
+            return weather.Location == city;
         }
 
         [TestCase("London", "<City>London</City>", ExpectedResult = true)]

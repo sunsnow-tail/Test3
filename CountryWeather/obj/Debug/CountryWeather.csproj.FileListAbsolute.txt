@@ -39,5 +39,6 @@ C:\GitHubRepo\Test3\CountryWeather\bin\System.Web.WebPages.Deployment.xml
 C:\GitHubRepo\Test3\CountryWeather\bin\System.Web.WebPages.Razor.xml
 C:\GitHubRepo\Test3\CountryWeather\bin\Antlr3.Runtime.pdb
 C:\GitHubRepo\Test3\CountryWeather\bin\Newtonsoft.Json.xml
+C:\GitHubRepo\Test3\CountryWeather\obj\Debug\CountryWeather.csprojResolveAssemblyReference.cache
 C:\GitHubRepo\Test3\CountryWeather\obj\Debug\iasset technical test.dll
 C:\GitHubRepo\Test3\CountryWeather\obj\Debug\iasset technical test.pdb

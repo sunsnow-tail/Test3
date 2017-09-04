@@ -24,7 +24,7 @@ namespace CountryWeather.WebApi
                 Pressure = "35",
                 Temp = "18"
             },
-            Name = "My city",
+            Location = "My city",
             Clouds = new CloudWeatherData{
                 All="85"
             },
@@ -42,7 +42,7 @@ namespace CountryWeather.WebApi
         };
 
         // GET api/<controller>/5
-        public Weather Get(string city, string country)
+        public WeatherData Get(string city, string country)
         {
             using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())
             {
@@ -77,8 +77,11 @@ namespace CountryWeather.WebApi
                             // Parse the response body. Blocking!
                             var weatherJson = response.Content.ReadAsStringAsync().Result;
                             var weather = JsonConvert.DeserializeObject<Weather>(weatherJson);
- 
-                            return weather;
+
+                            return new WeatherData(weather)
+                            {
+                                Location = city
+                            };
                         }                        
                     }
                 }
@@ -86,8 +89,10 @@ namespace CountryWeather.WebApi
                 //the first service has no weather
                 //the second service fail.
                 //let's mock some data
-                return mockWeather;
-
+                return new WeatherData(mockWeather)
+                {
+                    Location = city
+                };
             }
         }        
     }

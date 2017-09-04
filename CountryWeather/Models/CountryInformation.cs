@@ -10,6 +10,6 @@ namespace CountryWeather.Models
 
         public List<string> Cities { get; set; }
 
-        public Weather WeatherInfo { get; set; }
+        public WeatherData WeatherInfo { get; set; }
     }
 }

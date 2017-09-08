@@ -13,7 +13,7 @@ namespace CountryWeather
             AreaRegistration.RegisterAllAreas();
 
             //add web api
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            //GlobalConfiguration.Configure(WebApiConfig.Register);
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

@@ -17,7 +17,7 @@ namespace CountryWeatherTest
         [Test]
         public void CanGetCities()
         {
-            var controller = new CountryWeather.WebApi.CitiesController();
+            var controller = new CountryWeather.API.Controllers.CitiesController();
 
             var cities = controller.Get("Russia");
 
@@ -34,7 +34,7 @@ namespace CountryWeatherTest
         [TestCase("Russia", "London", ExpectedResult = false)]
         public bool CanGetCitiesForCountry(string country, string city)
         {
-            var controller = new CountryWeather.WebApi.CitiesController();
+            var controller = new CountryWeather.API.Controllers.CitiesController();
 
             var cities = controller.Get(country);
 
@@ -47,7 +47,7 @@ namespace CountryWeatherTest
         [TestCase("Russia", "Habarovsk", ExpectedResult = true)]
         public bool CanGetWeather(string country, string city)
         {
-            var controller = new CountryWeather.WebApi.WeatherController();
+            var controller = new CountryWeather.API.Controllers.WeatherController();
 
             var weather = controller.Get(city, country);
 
@@ -58,7 +58,7 @@ namespace CountryWeatherTest
         //[TestCase("Canberra", ExpectedResult = true)] - unfortunately, service can get any data but for London now
         public bool CanGetWeatherForCountry(string country, string city)
         {
-            var controller = new CountryWeather.WebApi.WeatherController();
+            var controller = new CountryWeather.API.Controllers.WeatherController();
 
             var weather = controller.Get(city, "Australia");
 
@@ -75,7 +75,7 @@ namespace CountryWeatherTest
         [TestCase("My big city name", "<City>My big name</City>", ExpectedResult = false)]
         public bool TestCityParsing(string city, string parseLine)
         {
-            var controller = new CountryWeather.WebApi.CitiesController();
+            var controller = new CountryWeather.API.Controllers.CitiesController();
 
             var result = controller.TestGetCity(parseLine);
 

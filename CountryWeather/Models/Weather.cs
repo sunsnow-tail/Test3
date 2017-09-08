@@ -37,6 +37,10 @@
             Pressure = weather.Main?.Pressure;
         }
 
+        public WeatherData()
+        {
+        }
+
         /// <summary>
         /// Location - City
         /// </summary>

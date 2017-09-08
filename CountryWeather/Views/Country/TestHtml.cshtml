@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CountryWeather.Models.Country>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
 
 @{
     ViewBag.Title = "Test";
@@ -62,7 +62,7 @@
 
         $("#loaderDiv").show();
 
-        var uri = "/api/Cities/?country=" + country;
+        var uri = 'http://localhost:3629/api/Cities/?country=' + country;
 
         $('#ssCity').empty();
 
@@ -96,7 +96,7 @@
         let control = $("#ssCountry")[0];
         let country = control.options[control.selectedIndex].text;
 
-        let uri = "/api/Weather/?city=" + city + "&country=" + country;
+        let uri = 'http://localhost:3629/api/Weather/?city=' + city + "&country=" + country;
 
         $.get(uri, (data) => {
 

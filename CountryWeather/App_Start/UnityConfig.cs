@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using CountryWeather.Models;
 using CountryWeather.Data;
-using CountryWeather.WebApi;
+
 
 namespace CountryWeather.App_Start
 {

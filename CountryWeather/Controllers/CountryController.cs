@@ -1,8 +1,11 @@
 ﻿using System.Web.Mvc;
 using CountryWeather.Models;
 using System.Collections.Generic;
-using CountryWeather.WebApi;
 using System.Linq;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace CountryWeather.Controllers
 {
@@ -43,20 +46,67 @@ namespace CountryWeather.Controllers
 
             var returnInfo = new CountryWeatherInformation();
             returnInfo.Country = selectedCountry;
-            var cities = new CitiesController();
-            returnInfo.Cities = cities.Get(selectedCountry).ToList();
+            returnInfo.Cities = GetCities(selectedCountry);
 
             var selectedCity = Request.Form["SelectedCity"];
             returnInfo.SelectedCity = selectedCity != null && selectedCity.Contains("_Select") ? null : selectedCity;
 
             if (!string.IsNullOrWhiteSpace(returnInfo.SelectedCity) && returnInfo.Cities.Contains(returnInfo.SelectedCity))
             {
-                var weather = new WeatherController();
-
-                returnInfo.WeatherInfo = weather.Get(returnInfo.SelectedCity, selectedCountry);
+                returnInfo.WeatherInfo = GetWeather(returnInfo.SelectedCity, selectedCountry);
             }
 
             return View("TestRazor", returnInfo);
+        }
+
+        private WeatherData GetWeather(string city, string country)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var url = @"http://localhost:3629/api/Weather/?city=" + city + @"&country=" + country;
+
+                client.BaseAddress = new Uri(url);
+
+                // Add an Accept header for JSON format.
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    // Parse the response body. Blocking!
+                    var weatherJson = response.Content.ReadAsStringAsync().Result;
+                    var weather = JsonConvert.DeserializeObject<WeatherData>(weatherJson);
+
+                    return weather;
+                }
+
+                return new WeatherData();
+            }
+        }
+
+        private List<string> GetCities(string country)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var url = @"http://localhost:3629/api/Cities/?country=" + country;
+
+                client.BaseAddress = new Uri(url);
+
+                // Add an Accept header for JSON format.
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    // Parse the response body. Blocking!
+                    var citiesJson = response.Content.ReadAsStringAsync().Result;
+                    var cities = JsonConvert.DeserializeObject<List<string>>(citiesJson);
+
+                    return cities;
+                }
+
+                return new List<string>();
+            }
         }
     }
 }

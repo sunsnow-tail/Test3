@@ -1,0 +1,36 @@
+﻿@model CountryWeather.Models.CountryWeatherInformation
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MVC</h2>
+
+@using (Html.BeginForm("GetCountryData", "Country", FormMethod.Post, new { id = "postForm" }))
+{
+    <h4>Type a country and press 'Enter':</h4>
+    @Html.TextBox("inputCountry", Model.Country, new { @class = "form-control input-lg" })
+
+    <div>
+        @Html.Partial("Cities", Model)
+    </div>
+
+    <div>
+        @Html.Partial("Weather", Model)
+    </div>
+}
+
+<script type="text/javascript">
+
+    $('#inputCountry').keypress(keypressHandler);
+
+    var keypressHandler = (e) => {
+        if (e.which == 13) {
+            $("#postForm").submit();
+        }
+    }
+
+</script>

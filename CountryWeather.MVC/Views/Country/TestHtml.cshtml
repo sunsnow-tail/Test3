@@ -1,0 +1,129 @@
+﻿@model IEnumerable<CountryWeather.Models.Country>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Html controls and JQuery</h2>
+<h5>
+    This is a bad example but it is a test. HTML controls and JQuery. It is a test to use "old way" in MVC. Why did I create this page - I like pages that has no visible postbacks.
+</h5>
+
+<h4>Select a country:</h4>
+<select id="ssCountry" class="form-control input-lg" onchange="getCities(this.options[this.selectedIndex].text)">
+    <option></option>
+</select>
+
+<div id="loaderDiv" class="loader" hidden></div>
+
+@*use style here as it is a subject to chabge by jquery*@
+<div id="divCity" style="display: none;">
+    <h4>Select a city:</h4>
+    <select id="ssCity" class="form-control input-lg" onchange="getWeather(this.options[this.selectedIndex].text)">
+        <option></option>
+    </select>
+</div>
+
+<div id="loaderDiv2" class="loader" hidden></div>
+
+<div id="weatherData" class="form-group"></div>
+
+
+<script type="text/javascript">
+
+    const apiURL = 'http://localhost:3629/api/';
+
+    $(document).ready( () => {
+
+       let data = [];
+
+       @foreach (var r in Model)
+       {
+          <text>
+                data.push('@r.Name');
+          </text>
+       }
+
+        data.forEach( (item) => {
+            $('#ssCountry').append($('<option>', { value: item, text: item }));
+        })
+    })
+
+    var capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+    var getCities = (country) => {
+
+        //empty weather controls
+        $("#weatherData").empty();
+
+        $("#loaderDiv").show();
+
+        var uri = apiURL + 'Cities/?country=' + country;
+
+        $('#ssCity').empty();
+
+        $.get(uri, (data) => {
+
+            data.forEach( (item) => {
+                $('#ssCity').append($('<option>', { value: item, text: item }));
+            });
+
+            $("#loaderDiv").hide();
+
+            if (country == "_Select a country") {
+                $("#divCity")[0].style = "display: none;"
+                return;
+            } else {
+                $("#divCity")[0].style = "display: block;"
+            }
+        });        
+    }
+
+    var getWeather = (city) => {
+
+        $("#weatherData").empty();
+
+        if (city == "_Select a city") {
+            return;
+        }
+
+        $("#loaderDiv2").show();
+
+        let control = $("#ssCountry")[0];
+        let country = control.options[control.selectedIndex].text;
+
+        let uri = apiURL + 'Weather/?city=' + city + "&country=" + country;
+
+        $.get(uri, (data) => {
+
+            let controls = [];
+
+            //go through props to add controls
+            for (let dt in data) {
+
+                let propName = capitalizeFirstLetter(dt);
+                let propValue = Reflect.get(data, dt) != null ? Reflect.get(data, dt) : "";
+
+                controls.push('<input type="text" readonly="true" class="input-lg" value = "' +
+                    propName + ' : ' + propValue + '" />');
+            } 
+
+            controls.forEach( (item) => {
+                $("#weatherData").append(item);
+                $("#weatherData").append('&nbsp;');
+            })
+
+            $("#loaderDiv2").hide();
+
+        });
+
+    }
+
+</script>
+

@@ -1,0 +1,4 @@
+C:\GitHubRepo\Test3\CountryWeather.Models\bin\Debug\CountryWeather.Models.dll
+C:\GitHubRepo\Test3\CountryWeather.Models\bin\Debug\CountryWeather.Models.pdb
+C:\GitHubRepo\Test3\CountryWeather.Models\obj\Debug\CountryWeather.Models.dll
+C:\GitHubRepo\Test3\CountryWeather.Models\obj\Debug\CountryWeather.Models.pdb

@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.MVC", "CountryWeather\CountryWeather.MVC.csproj", "{FBFB8738-0BB6-4D05-9115-033F09C95CA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.MVC", "CountryWeather.MVC\CountryWeather.MVC.csproj", "{FBFB8738-0BB6-4D05-9115-033F09C95CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.Tests", "CountryWeatherTest\CountryWeather.Tests.csproj", "{527DE4D7-18F4-4BFF-BC4C-7AA8EF411446}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.Tests", "CountryWeather.Test\CountryWeather.Tests.csproj", "{527DE4D7-18F4-4BFF-BC4C-7AA8EF411446}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.API", "CountryWeather.API\CountryWeather.API.csproj", "{1B50ED47-6730-4272-A7DD-5C5E938AC34C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountryWeather.Models", "CountryWeather.Models\CountryWeather.Models.csproj", "{0953E725-4676-408B-8903-E43A80DCC596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{1B50ED47-6730-4272-A7DD-5C5E938AC34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B50ED47-6730-4272-A7DD-5C5E938AC34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B50ED47-6730-4272-A7DD-5C5E938AC34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0953E725-4676-408B-8903-E43A80DCC596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0953E725-4676-408B-8903-E43A80DCC596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0953E725-4676-408B-8903-E43A80DCC596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0953E725-4676-408B-8903-E43A80DCC596}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

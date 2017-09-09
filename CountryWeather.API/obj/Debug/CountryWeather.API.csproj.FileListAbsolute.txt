@@ -17,3 +17,5 @@ C:\GitHubRepo\Test3\CountryWeather.API\bin\System.Web.Http.WebHost.xml
 C:\GitHubRepo\Test3\CountryWeather.API\obj\Debug\CountryWeather.API.dll
 C:\GitHubRepo\Test3\CountryWeather.API\obj\Debug\CountryWeather.API.pdb
 C:\GitHubRepo\Test3\CountryWeather.API\obj\Debug\CountryWeather.API.csprojResolveAssemblyReference.cache
+C:\GitHubRepo\Test3\CountryWeather.API\bin\CountryWeather.Models.dll
+C:\GitHubRepo\Test3\CountryWeather.API\bin\CountryWeather.Models.pdb

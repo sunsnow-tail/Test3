@@ -24,24 +24,26 @@ namespace CountryWeather.Data
 
         private List<Country> GetCountries()
         {
-            var uri = ConfigurationManager.AppSettings["cityUrl"];
+            var uri = ConfigurationManager.AppSettings["apiUrl"];
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(uri);
+                var apiAddress = $"{uri}api/Countries";
+
+                client.BaseAddress = new Uri(apiAddress);
 
                 // Add an Accept header for JSON format.
                 client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
                 // List data response.
-                HttpResponseMessage response = client.GetAsync(uri).Result;
+                HttpResponseMessage response = client.GetAsync(apiAddress).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     var countries = response.Content.ReadAsStringAsync().Result;
-                    var contryList = JsonConvert.DeserializeObject<List<Country>>(countries);
+                    var contryList = JsonConvert.DeserializeObject<List<string>>(countries);
 
-                    return contryList;
+                    return contryList.Select(p => new Country() { Name = p }).ToList();
                 }
                 else
                 {

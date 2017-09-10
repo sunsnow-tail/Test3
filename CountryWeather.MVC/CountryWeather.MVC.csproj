@@ -146,14 +146,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Data\CountryData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\CountryInformation.cs" />
     <Compile Include="Models\ICountry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

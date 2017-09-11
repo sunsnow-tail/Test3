@@ -23,6 +23,7 @@ $RECYCLE.BIN/
 # bin debug files
 bin/
 debug/
+packages/
 
 # =========================
 # Operating System Files

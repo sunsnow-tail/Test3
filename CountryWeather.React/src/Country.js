@@ -4,16 +4,18 @@ import './App.css';
 const apiUrl = 'http://localhost:3629/api/Countries';
 
 class Country extends Component {
-    constructor(){
+    constructor(props){
         super();
         this.state = {
-            data: []
+            data: ['Countries are loading...']
         };
     } 
 
+    //component life cycle - method is called after rendering
     componentDidMount() {    
         var that = this;
       
+        //set the number synchrones operations
         fetch(apiUrl, {
             headers : { 
                 'Content-Type': 'application/json',
@@ -27,6 +29,7 @@ class Country extends Component {
           return response.json();
         })
         .then(function(data) {
+            //change state - rerender this component
           that.setState({ data: data });
         });
       }
@@ -35,7 +38,7 @@ class Country extends Component {
 
         return(
             <div>
-                <select id="selCountries">
+                <select onChange={this.props.onCountryChange}>
                 {this.state.data.map(id =>
                     <option key={id} value={id}>{id}</option>
                 )}

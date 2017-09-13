@@ -36,7 +36,7 @@ namespace CountryWeather.API.Controllers
                     var countries = response.Content.ReadAsStringAsync().Result;
                     var contryList = JsonConvert.DeserializeObject<List<Country>>(countries);
 
-                    return contryList.Select(p => p.Name);
+                    return contryList.Select(p => p.Name).Distinct();
                 }
                 else
                 {

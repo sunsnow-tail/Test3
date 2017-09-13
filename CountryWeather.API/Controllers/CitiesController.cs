@@ -37,7 +37,7 @@ namespace CountryWeather.API.Controllers
                 var returnData = items.Select(p => GetCity(p.ToString())).ToList();
                 returnData.Add("_Select a city");
 
-                return returnData.OrderBy(p => p);
+                return returnData.Distinct().OrderBy(p => p);
             }
         }
 

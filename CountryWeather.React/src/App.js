@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import Country from './Country';
 import City from './City';
-
+import Weather from './Weather';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      selectedCountry: ''
+      selectedCountry: '',
+      selectedCity: ''
     }
   }
 
@@ -24,7 +25,13 @@ class App extends Component {
   }
 
   onCityChange =(e) => {
-    console.log(e.target.value);
+    let city = e.target.value;
+
+    this.setState((prevState) => {
+      return {
+        selectedCity: city
+      };
+    });
   }
 
   render() {
@@ -35,6 +42,9 @@ class App extends Component {
         </div>
         <div >
           <City country={this.state.selectedCountry} onCityChange={this.onCityChange} />
+        </div>
+        <div >
+          <Weather city={this.state.selectedCity} country={this.state.selectedCountry} />
         </div>
       </div>
     )

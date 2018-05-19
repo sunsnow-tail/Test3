@@ -36,14 +36,17 @@ namespace CountryWeather.API.Controllers
                     var countries = response.Content.ReadAsStringAsync().Result;
                     var contryList = JsonConvert.DeserializeObject<List<Country>>(countries);
 
-                    return contryList.Select(p => p.Name).Distinct();
+                    var countriesList = contryList.Select(p => p.Name).Distinct().ToList();
+                    countriesList.Add(" Select a country");
+
+                    return countriesList;
                 }
                 else
                 {
                     //the EU service fail.
                     //let's mock some data
                     return new List<string>{
-                        "_Select a country",
+                        " Select a country",
                         "Australia",
                         "Russia",
                     };

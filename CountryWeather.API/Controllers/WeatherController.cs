@@ -49,50 +49,62 @@ namespace CountryWeather.API.Controllers
         // GET api/<controller>/5
         public WeatherData Get(string city, string country)
         {
-            using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())
+            try
             {
-                client.Open();
-
-                var data = client.GetWeather(city, country);
-
-                //I did not find a city that returns weather
-
-                if (data.Equals("Data Not Found"))
+                using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())
                 {
-                    client.Close();
+                    client.Open();
 
-                    //call different service
+                    var data = client.GetWeather(city, country);
 
-                    //apiId is mandotary and it is for London
-                    var uri = string.Format(ConfigurationManager.AppSettings["altService"], city);
-                    var apiId = ConfigurationManager.AppSettings["altServiceId"];
+                    //I did not find a city that returns weather
 
-                    uri += "&" + apiId;
-
-                    using (HttpClient client2 = new HttpClient())
+                    if (data.Equals("Data Not Found"))
                     {
-                        client2.BaseAddress = new Uri(uri);
+                        client.Close();
 
-                        // Add an Accept header for JSON format.
-                        client2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                        //call different service
 
-                        HttpResponseMessage response = client2.GetAsync(uri).Result;
-                        if (response.IsSuccessStatusCode)
+                        //apiId is mandotary and it is for London
+                        var uri = string.Format(ConfigurationManager.AppSettings["altService"], city);
+                        var apiId = ConfigurationManager.AppSettings["altServiceId"];
+
+                        uri += "&" + apiId;
+
+                        using (HttpClient client2 = new HttpClient())
                         {
-                            // Parse the response body. Blocking!
-                            var weatherJson = response.Content.ReadAsStringAsync().Result;
-                            var weather = JsonConvert.DeserializeObject<Weather>(weatherJson);
+                            client2.BaseAddress = new Uri(uri);
 
-                            return new WeatherData(weather)
+                            // Add an Accept header for JSON format.
+                            client2.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                            HttpResponseMessage response = client2.GetAsync(uri).Result;
+                            if (response.IsSuccessStatusCode)
                             {
-                                Location = city
-                            };
+                                // Parse the response body. Blocking!
+                                var weatherJson = response.Content.ReadAsStringAsync().Result;
+                                var weather = JsonConvert.DeserializeObject<Weather>(weatherJson);
+
+                                return new WeatherData(weather)
+                                {
+                                    Location = city
+                                };
+                            }
                         }
                     }
-                }
 
-                //the first service has no weather
-                //the second service fail.
+                    //the first service has no weather
+                    //the second service fail.
+                    //let's mock some data
+                    return new WeatherData(mockWeather)
+                    {
+                        Location = city
+                    };
+                }
+            }
+            catch
+            {
+                //currently both services are down
                 //let's mock some data
                 return new WeatherData(mockWeather)
                 {

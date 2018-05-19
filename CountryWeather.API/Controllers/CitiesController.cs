@@ -23,21 +23,34 @@ namespace CountryWeather.API.Controllers
 
             var root = ConfigurationManager.AppSettings["rootName"];
 
-            using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())
+            try
             {
-                client.Open();
+                using (var client = new GlobalWeatherService.GlobalWeatherSoapClient())
+                {
+                    client.Open();
 
-                var dataXml = client.GetCitiesByCountry(country);
+                    var dataXml = client.GetCitiesByCountry(country);
 
-                var xml = XDocument.Parse(dataXml);
+                    var xml = XDocument.Parse(dataXml);
 
-                //NewDataSet comes from http://www.webservicex.net/globalweather.asmx/GetCitiesByCountry
-                var items = xml.Descendants(root).Elements();
+                    //NewDataSet comes from http://www.webservicex.net/globalweather.asmx/GetCitiesByCountry
+                    var items = xml.Descendants(root).Elements();
 
-                var returnData = items.Select(p => GetCity(p.ToString())).ToList();
-                returnData.Add("_Select a city");
+                    var returnData = items.Select(p => GetCity(p.ToString())).ToList();
+                    returnData.Add(" Select a city");
 
-                return returnData.Distinct().OrderBy(p => p);
+                    return returnData.Distinct().OrderBy(p => p);
+                }
+            }
+            catch
+            {
+                return new List<string>
+                {
+                    "Select a city...",
+                    "London",
+                    "Moscow",
+                    "Brisbane"
+                };
             }
         }
 
@@ -50,8 +63,6 @@ namespace CountryWeather.API.Controllers
         /// <summary>
         /// gets city from <city>...</city>
         /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
         private string GetCity(string data)
         {
             //6 is <City>
